@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promotion Tracker | NSL FOODS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<section id="login">
+  <form id="loginForm" class="login-card" autocomplete="off">
+    <div class="logo">NSL</div>
+    <h1>Promotion Tracker</h1>
+    <p class="muted">NSL FOODS PCL · Executive Dashboard</p>
+    <label>รหัสผ่าน</label>
+    <input type="password" id="pw" placeholder="กรอกรหัสผ่านเพื่อเข้าใช้งาน" autofocus>
+    <div id="loginErr" class="err"></div>
+    <button class="btn primary" type="submit">เข้าสู่ระบบ</button>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="topbar">
+    <div class="brand"><span class="logo sm">NSL</span>
+      <div><b>Promotion Tracker · Executive Dashboard</b><small id="srcInfo">กำลังโหลดข้อมูล…</small></div></div>
+    <div class="actions">
+      <label class="btn" title="ใช้เมื่อโหลดอัตโนมัติไม่ได้">⬆ โหลดไฟล์ Excel<input type="file" id="fileIn" accept=".xlsx,.xls" hidden></label>
+      <button class="btn" id="btnPrint">🖨 พิมพ์ / PDF</button>
+      <button class="btn accent" id="btnLogout">ออกจากระบบ</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="banner" class="banner" hidden></div>
+
+    <section class="kpis" id="kpis"></section>
+
+    <section class="grid">
+      <article class="card"><h3>ความคืบหน้าการสัมภาษณ์</h3><div id="cDonut" class="donut-box"></div></article>
+      <article class="card"><h3>ผลการตรวจเกณฑ์คุณสมบัติ</h3><div id="cCrit"></div></article>
+      <article class="card wide"><h3>สถานะแยกตามฝ่าย</h3><div id="cDiv"></div></article>
+    </section>
+
+    <section class="grid">
+      <article class="card"><h3>กำหนดการสัมภาษณ์ที่กำลังจะถึง</h3><div id="cUpcoming"></div></article>
+      <article class="card"><h3>ตำแหน่งใหม่ที่ได้รับการเสนอ</h3><div id="cPos"></div></article>
+      <article class="card"><h3>การกระจายอายุงาน</h3><div id="cTenure"></div></article>
+    </section>
+
+    <section class="card attn"><h3>ประเด็นที่ควรติดตาม</h3><div id="cAttn" class="attn-grid"></div></section>
+
+    <section class="toolbar">
+      <h3 style="margin:0">รายชื่อทั้งหมด</h3>
+      <input id="q" type="search" placeholder="ค้นหา ชื่อ / รหัสพนักงาน / แผนก…">
+      <select id="fDiv"><option value="">ทุกฝ่าย</option></select>
+      <select id="fStatus"><option value="">ทุกสถานะ</option></select>
+      <span class="count" id="count"></span>
+    </section>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>รหัส</th><th>ชื่อ-สกุล</th><th>ฝ่าย / แผนก / สาขา</th><th>อายุงาน</th>
+          <th>เกณฑ์ปี</th><th>ชม.อบรม</th><th>เกณฑ์ชม.</th><th>ตำแหน่งเดิม → ใหม่</th>
+          <th>สถานะ</th><th>วันที่สัมภาษณ์</th><th>วันที่ดำเนินการ</th><th>หมายเหตุ</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <footer class="foot" id="foot"></footer>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
